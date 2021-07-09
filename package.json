@@ -1,22 +1,35 @@
 {
-  "name": "thelia-api",
+  "name": "@openstudio/thelia-api-utils",
+  "homepage": "https://github.com/thelia/thelia-api-utils",
   "version": "0.1.0",
-  "description": "",
+  "description": "collection of javascript function & React hooks to use Thelia OpenApi",
   "main": "es/index.js",
-  "module": "dist/TheliaAPI.esm.js",
+  "module": "es/index.js",
   "browser": "dist/TheliaAPI.umd.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "dev": "rollup --watch --config",
     "build:umd": "rimraf ./dist && rollup --config",
     "build:es": "rimraf ./es && tsc",
-    "build": "npm run build:umd && npm run build:es"
+    "build:types": "rimraf ./types && tsc --project tsconfig.types.json",
+    "build": "npm run build:umd && npm run build:es && npm run build:types"
   },
-  "keywords": [],
-  "author": "Openstudio",
-  "license": "ISC",
+  "keywords": [
+    "thelia"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thelia/thelia-api-utils.git"
+  },
+  "author": "OpenStudio",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/thelia/thelia-api-utils/issues"
+  },
   "files": [
     "dist",
-    "es"
+    "es",
+    "types"
   ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",
