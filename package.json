@@ -1,7 +1,7 @@
 {
   "name": "@openstudio/thelia-api-utils",
   "homepage": "https://github.com/thelia/thelia-api-utils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "collection of javascript function & React hooks to use Thelia OpenApi",
   "main": "es/index.js",
   "module": "es/index.js",
