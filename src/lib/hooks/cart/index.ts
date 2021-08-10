@@ -3,19 +3,26 @@ import {
   cartItemDelete,
   cartItemUpdate,
   cartQuery,
-} from "../../routes/cart";
-import { useMutation, useQuery } from "react-query";
+} from '../../routes/cart';
+import { useMutation, useQuery } from 'react-query';
 
-import { queryClient } from "../../queryClient";
+import { queryClient } from '../../queryClient';
 
 // CART
 export function useCartQuery() {
-  return useQuery("cart", () => cartQuery(), {
-    onSuccess: () => {
-      queryClient.invalidateQueries("delivery_modules");
-      queryClient.invalidateQueries("payment_modules");
+  return useQuery(
+    'cart',
+    async () => {
+      const response = await cartQuery();
+      return response?.data;
     },
-  });
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('delivery_modules');
+        queryClient.invalidateQueries('payment_modules');
+      },
+    }
+  );
 }
 
 export function useCartItemCreate() {
@@ -25,14 +32,14 @@ export function useCartItemCreate() {
       quantity,
       append = true,
     }: {
-      pseId: number;
-      quantity: number;
-      append: boolean;
+      readonly pseId: number;
+      readonly quantity: number;
+      readonly append: boolean;
     }) => addToCart({ pseId, quantity, append }),
     {
       onSuccess: (response) => {
         if (response.data.cart) {
-          queryClient.setQueryData("cart", response.data.cart);
+          queryClient.setQueryData('cart', response.data.cart);
         }
       },
     }
@@ -43,7 +50,7 @@ export function useCartItemUpdate(id: number) {
   return useMutation((quantity: number) => cartItemUpdate(id, quantity), {
     onSuccess: (response) => {
       if (response.data.cart) {
-        queryClient.setQueryData("cart", response.data.cart);
+        queryClient.setQueryData('cart', response.data.cart);
       }
     },
   });
@@ -52,7 +59,7 @@ export function useCartItemUpdate(id: number) {
 export function useCartItemDelete(id: number) {
   return useMutation(() => cartItemDelete(id), {
     onSuccess: (response) => {
-      queryClient.setQueryData("cart", response.data);
+      queryClient.setQueryData('cart', response.data);
     },
   });
 }
