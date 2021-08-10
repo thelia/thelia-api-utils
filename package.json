@@ -1,19 +1,13 @@
 {
   "name": "@openstudio/thelia-api-utils",
   "homepage": "https://github.com/thelia/thelia-api-utils",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "collection of javascript function & React hooks to use Thelia OpenApi",
-  "main": "es/index.js",
-  "module": "es/index.js",
-  "browser": "dist/TheliaAPI.umd.js",
-  "types": "types/index.d.ts",
-  "scripts": {
-    "dev": "rollup --watch --config",
-    "build:umd": "rimraf ./dist && rollup --config",
-    "build:es": "rimraf ./es && tsc",
-    "build:types": "rimraf ./types && tsc --project tsconfig.types.json",
-    "build": "npm run build:umd && npm run build:es && npm run build:types"
-  },
+  "main": "build/main/index.js",
+  "typings": "build/main/index.d.ts",
+  "module": "build/module/index.js",
+  "author": "OpenStudio",
+  "license": "LGPL-3.0-or-later",
   "keywords": [
     "thelia"
   ],
@@ -21,32 +15,48 @@
     "type": "git",
     "url": "git+https://github.com/thelia/thelia-api-utils.git"
   },
-  "author": "OpenStudio",
-  "license": "LGPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/thelia/thelia-api-utils/issues"
   },
-  "files": [
-    "dist",
-    "es",
-    "types"
-  ],
+  "scripts": {
+    "build": "run-p build:*",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json"
+  },
+  "engines": {
+    "node": ">=10"
+  },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "@rollup/plugin-typescript": "^8.2.1",
     "@types/qs": "^6.9.7",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "eslint": "^7.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-functional": "^3.0.2",
+    "eslint-plugin-import": "^2.22.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.1",
     "react-dom": "^17.0.2",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.53.0",
-    "rollup-plugin-filesize": "^9.1.1",
-    "tslib": "^2.3.0",
-    "typescript": "^4.3.5"
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "files": [
+    "build/main",
+    "build/module",
+    "!**/*.spec.*",
+    "!**/*.json",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "config": {},
+  "prettier": {
+    "singleQuote": true
   },
   "dependencies": {
     "axios": "^0.21.1",
     "qs": "^6.10.1",
-    "react-query": "^3.18.1"
+    "react-query": "^3.19.2"
   }
 }
