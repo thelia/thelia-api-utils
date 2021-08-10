@@ -4,3 +4,13 @@ import fetcher from "../../fetcher";
 export function getCustomer() {
   return fetcher(`/customer`);
 }
+
+export function patchCustomer(data) {
+  return fetcher(
+    `/customer`,
+    {
+      method: 'PATCH',
+      data
+    }
+  )
+}
