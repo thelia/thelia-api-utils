@@ -4,6 +4,7 @@ import fetcher from '../../fetcher';
 
 export function getDeliveryModules(addressId: number | null) {
   return fetcher(`/delivery/modules`, {
+    method: 'GET',
     params: {
       addressId,
     },
@@ -12,17 +13,14 @@ export function getDeliveryModules(addressId: number | null) {
 
 export async function getDeliveryModes() {
   const response = await fetcher(`/delivery/modules`);
-  if (response.data) {
-    return {
-      ...response,
-      data: [
-        ...new Set(
-          response.data.map(
-            (m: { readonly deliveryMode: string }) => m.deliveryMode
-          )
-        ),
-      ],
-    };
+  if (response) {
+    return [
+      ...new Set(
+        response.data.map(
+          (m: { readonly deliveryMode: string }) => m.deliveryMode
+        )
+      ),
+    ];
   }
   return undefined;
 }
