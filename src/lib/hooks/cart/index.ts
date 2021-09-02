@@ -4,6 +4,7 @@ import {
   cartItemUpdate,
   cartQuery,
 } from '../../routes/cart';
+import { Cart, CartItem } from '../../../types';
 import { useMutation, useQuery } from 'react-query';
 
 import { queryClient } from '../../queryClient';
@@ -30,7 +31,10 @@ export function useCartItemCreate() {
       readonly append: boolean;
     }) => addToCart({ pseId, quantity, append }),
     {
-      onSuccess: (response) => {
+      onSuccess: (response: {
+        readonly cart: Cart;
+        readonly cartItem: CartItem;
+      }) => {
         if (response.cart) {
           queryClient.setQueryData('cart', response.cart);
         }
@@ -41,7 +45,10 @@ export function useCartItemCreate() {
 
 export function useCartItemUpdate(id: number) {
   return useMutation((quantity: number) => cartItemUpdate(id, quantity), {
-    onSuccess: (response) => {
+    onSuccess: (response: {
+      readonly cart: Cart;
+      readonly cartItem: CartItem;
+    }) => {
       if (response.cart) {
         queryClient.setQueryData('cart', response.cart);
       }
@@ -51,8 +58,8 @@ export function useCartItemUpdate(id: number) {
 
 export function useCartItemDelete(id: number) {
   return useMutation(() => cartItemDelete(id), {
-    onSuccess: (response) => {
-      queryClient.setQueryData('cart', response.data);
+    onSuccess: (response: Cart) => {
+      if (response) queryClient.setQueryData('cart', response);
     },
   });
 }
