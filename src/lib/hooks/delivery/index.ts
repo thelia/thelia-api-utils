@@ -1,13 +1,13 @@
 // DELIVERY MODULES
 
-import { getDeliveryModes, getDeliveryModules } from "../../routes/delivery";
+import { getDeliveryModes, getDeliveryModules } from '../../routes/delivery';
 
-import { useQuery } from "react-query";
+import { useQuery } from 'react-query';
 
 export function useDeliveryModulessQuery(addressId: number) {
   const { data } = useDeliveryModes();
   return useQuery(
-    ["delivery_modules", addressId],
+    ['delivery_modules', addressId],
     () => getDeliveryModules(addressId),
     {
       enabled: !!data,
@@ -16,5 +16,5 @@ export function useDeliveryModulessQuery(addressId: number) {
 }
 
 export function useDeliveryModes() {
-  return useQuery(["delivery_modes"], () => getDeliveryModes());
+  return useQuery(['delivery_modes'], () => getDeliveryModes());
 }

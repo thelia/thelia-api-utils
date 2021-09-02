@@ -10,19 +10,12 @@ import { queryClient } from '../../queryClient';
 
 // CART
 export function useCartQuery() {
-  return useQuery(
-    'cart',
-    async () => {
-      const response = await cartQuery();
-      return response?.data;
+  return useQuery('cart', async () => cartQuery(), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('delivery_modules');
+      queryClient.invalidateQueries('payment_modules');
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries('delivery_modules');
-        queryClient.invalidateQueries('payment_modules');
-      },
-    }
-  );
+  });
 }
 
 export function useCartItemCreate() {
@@ -38,8 +31,8 @@ export function useCartItemCreate() {
     }) => addToCart({ pseId, quantity, append }),
     {
       onSuccess: (response) => {
-        if (response.data.cart) {
-          queryClient.setQueryData('cart', response.data.cart);
+        if (response.cart) {
+          queryClient.setQueryData('cart', response.cart);
         }
       },
     }
@@ -49,8 +42,8 @@ export function useCartItemCreate() {
 export function useCartItemUpdate(id: number) {
   return useMutation((quantity: number) => cartItemUpdate(id, quantity), {
     onSuccess: (response) => {
-      if (response.data.cart) {
-        queryClient.setQueryData('cart', response.data.cart);
+      if (response.cart) {
+        queryClient.setQueryData('cart', response.cart);
       }
     },
   });

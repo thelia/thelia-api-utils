@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
+import ensureError from 'ensure-error';
 import { stringify } from 'qs';
 
 function devPrefix() {
@@ -13,6 +14,18 @@ export const ApiInstance = axios.create({
   },
 });
 
-export default function fetcher(url: string, config?: AxiosRequestConfig) {
-  return ApiInstance(url, config);
+export default async function fetcher(
+  url: string,
+  config?: AxiosRequestConfig,
+  onlyData = true
+) {
+  try {
+    const response = await ApiInstance(url, config);
+    if (onlyData) {
+      return response.data;
+    }
+    return response;
+  } catch (error) {
+    return Promise.reject(ensureError(error));
+  }
 }

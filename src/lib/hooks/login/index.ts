@@ -1,6 +1,6 @@
-import { login } from "../../routes/login";
-import { queryClient } from "../../queryClient";
-import { useMutation } from "react-query";
+import { login } from '../../routes/login';
+import { queryClient } from '../../queryClient';
+import { useMutation } from 'react-query';
 
 // LOGIN
 export function useLogin(reload = true) {
@@ -10,9 +10,9 @@ export function useLogin(reload = true) {
       password,
       rememberMe = true,
     }: {
-      email: string;
-      password: string;
-      rememberMe: boolean;
+      readonly email: string;
+      readonly password: string;
+      readonly rememberMe: boolean;
     }) =>
       login({
         email,
@@ -24,7 +24,7 @@ export function useLogin(reload = true) {
         if (reload) {
           window.location.reload();
         } else {
-          queryClient.invalidateQueries("customer");
+          queryClient.invalidateQueries('customer');
         }
       },
     }
