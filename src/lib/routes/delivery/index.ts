@@ -13,12 +13,10 @@ export function getDeliveryModules(addressId: number | null) {
 
 export async function getDeliveryModes() {
   const response = await fetcher(`/delivery/modules`);
-  if (response) {
+  if (response && Array.isArray(response)) {
     return [
       ...new Set(
-        response.data.map(
-          (m: { readonly deliveryMode: string }) => m.deliveryMode
-        )
+        response.map((m: { readonly deliveryMode: string }) => m.deliveryMode)
       ),
     ];
   }
