@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import ensureError from 'ensure-error';
 import { stringify } from 'qs';
 
 function devPrefix() {
@@ -26,6 +25,6 @@ export default async function fetcher(
     }
     return response;
   } catch (error) {
-    return Promise.reject(ensureError(error));
+    return Promise.reject(error);
   }
 }

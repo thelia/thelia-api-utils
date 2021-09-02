@@ -56,8 +56,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "ensure-error": "^4.0.0",
     "qs": "^6.10.1",
-    "react-query": "^3.19.2"
+    "react-query": "^3.21.1"
   }
 }
