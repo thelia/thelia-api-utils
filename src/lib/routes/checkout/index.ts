@@ -1,8 +1,15 @@
-import fetcher from "../../fetcher";
+import fetcher from '../../fetcher';
 
-export function checkoutCreate(data = {}) {
+export function getCheckout(params = {}) {
   return fetcher(`/checkout`, {
-    method: "POST",
+    method: 'GET',
+    params,
+  });
+}
+
+export function setCheckout(data = {}) {
+  return fetcher(`/checkout`, {
+    method: 'POST',
     data,
   });
 }

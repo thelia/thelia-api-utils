@@ -101,3 +101,27 @@ export type CartItem = {
   readonly promoPrice: Price;
   readonly quantity: number;
 };
+
+export type CheckoutRequest = {
+  readonly needValidate: boolean;
+  readonly deliveryModuleId: number;
+  readonly paymentModuleId: number;
+  readonly billingAddressId: number;
+  readonly deliveryAddressId: number;
+  readonly deliveryModuleOptionCode: string;
+  readonly pickupAddress: unknown;
+  readonly acceptedTermsAndConditions: boolean;
+};
+
+export type CheckoutResponse = {
+  readonly deliveryModuleId: number;
+  readonly paymentModuleId: number;
+  readonly billingAddressId: number;
+  readonly deliveryAddressId: number;
+  readonly deliveryModuleOptionCode: string;
+  readonly pickupAddress: {
+    readonly [index: string]: unknown;
+  };
+  readonly acceptedTermsAndConditions: boolean;
+  readonly isComplete: boolean;
+};
