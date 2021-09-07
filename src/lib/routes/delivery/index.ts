@@ -1,6 +1,6 @@
 // DELIVERY MODULES
 
-import fetcher from '../../fetcher';
+import { fetcher } from '../../fetcher';
 
 export function getDeliveryModules(addressId: number | null) {
   return fetcher(`/delivery/modules`, {

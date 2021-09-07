@@ -13,7 +13,7 @@ export const ApiInstance = axios.create({
   },
 });
 
-export default async function fetcher(
+export async function fetcher(
   url: string,
   config?: AxiosRequestConfig,
   onlyData = true

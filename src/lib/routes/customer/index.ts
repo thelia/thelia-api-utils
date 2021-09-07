@@ -1,4 +1,4 @@
-import fetcher from "../../fetcher";
+import { fetcher } from '../../fetcher';
 
 // CUSTOMER
 export function getCustomer() {
@@ -6,11 +6,8 @@ export function getCustomer() {
 }
 
 export function patchCustomer(data) {
-  return fetcher(
-    `/customer`,
-    {
-      method: 'PATCH',
-      data
-    }
-  )
+  return fetcher(`/customer`, {
+    method: 'PATCH',
+    data,
+  });
 }

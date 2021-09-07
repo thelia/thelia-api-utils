@@ -1,4 +1,4 @@
-import fetcher from '../../fetcher';
+import { fetcher } from '../../fetcher';
 
 export function getCheckout(params = {}) {
   return fetcher(`/checkout`, {

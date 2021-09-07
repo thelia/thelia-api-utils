@@ -1,7 +1,7 @@
 // PRODUCT
 // ----------------
 
-import fetcher from "../../fetcher";
+import { fetcher } from '../../fetcher';
 
 export function searchProducts(params = { limit: 10 }) {
   const { limit } = params;

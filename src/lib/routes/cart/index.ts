@@ -1,4 +1,4 @@
-import fetcher from '../../fetcher';
+import { fetcher } from '../../fetcher';
 
 // CART
 export function cartQuery() {

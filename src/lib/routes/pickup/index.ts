@@ -1,9 +1,9 @@
-import fetcher from "../../fetcher";
+import { fetcher } from '../../fetcher';
 
 // PICKUP LOCATIONS
 export function getPickupLocations(params = {}) {
   return fetcher(`/delivery/pickup-locations`, {
-    method: "GET",
+    method: 'GET',
     params,
   });
 }
