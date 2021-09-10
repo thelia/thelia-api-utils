@@ -1,4 +1,4 @@
-import { getCustomer, patchCustomer } from '../../routes/customer';
+import { getCustomer, patchCustomer, createCustomer } from '../../routes/customer';
 import { useMutation, useQuery } from 'react-query';
 
 import { queryClient } from '../../queryClient';
@@ -10,6 +10,14 @@ export function useCustomer() {
 
 export function useCustomerUpdate() {
   return useMutation((data) => patchCustomer(data), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('customer');
+    },
+  });
+}
+
+export function useCustomerCreate() {
+  return useMutation((data) => createCustomer(data), {
     onSuccess: () => {
       queryClient.invalidateQueries('customer');
     },
