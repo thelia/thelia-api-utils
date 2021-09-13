@@ -11,3 +11,10 @@ export function patchCustomer(data) {
     data,
   });
 }
+
+export function createCustomer(data) {
+  return fetcher(`/customer`, {
+    method: 'POST',
+    data,
+  });
+}
