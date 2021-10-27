@@ -22,3 +22,9 @@ export async function getDeliveryModes() {
   }
   return undefined;
 }
+
+export function getSimpleDeliveryModules() {
+  return fetcher(`/delivery/simple-modules`, {
+    method: 'GET'
+  });
+}
