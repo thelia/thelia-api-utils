@@ -9,3 +9,7 @@ export function couponCreate(code: string) {
     },
   });
 }
+
+export function couponClearAll() {
+    return fetcher(`/coupon/clear_all`);
+}

@@ -1,11 +1,13 @@
-import { getCustomer, patchCustomer, createCustomer } from '../../routes/customer';
+import { createCustomer, getCustomer, patchCustomer } from '../../routes/customer';
 import { useMutation, useQuery } from 'react-query';
 
 import { queryClient } from '../../queryClient';
 
 // CUSTOMER
-export function useCustomer() {
-  return useQuery('customer', () => getCustomer());
+export function useCustomer(isEnabled : boolean) {
+  return useQuery('customer', () => getCustomer(), {
+    enabled: !!isEnabled
+  });
 }
 
 export function useCustomerUpdate() {
