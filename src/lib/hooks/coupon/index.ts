@@ -1,6 +1,6 @@
 import { couponClearAll,couponCreate  } from '../../routes/coupon';
 import { queryClient } from '../../queryClient';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 
 // COUPON
 export function useCouponCreate() {
@@ -11,8 +11,8 @@ export function useCouponCreate() {
   });
 }
 
-export function useCouponClearAll(id : number) {
-  return useQuery(`couponClearAll_${id}`, () => couponClearAll(), {
+export function useCouponClearAll() {
+  return useMutation(() => couponClearAll(), {
     onSuccess: () => {
       queryClient.invalidateQueries('cart');
     },
