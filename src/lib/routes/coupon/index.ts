@@ -10,6 +10,10 @@ export function couponCreate(code: string) {
   });
 }
 
+export function couponClear(id: string) {
+  return fetcher(`/coupon/clear/${id}`);
+}
+
 export function couponClearAll() {
     return fetcher(`/coupon/clear_all`);
 }
