@@ -1,13 +1,13 @@
 // PRODUCT
 // ----------------
 
-import { searchProducts } from "../../routes/product";
-import { useQuery } from "react-query";
+import { searchProducts } from '../../routes/product';
+import { useQuery } from 'react-query';
 
-export function useSearchQuery(params = { limit: 10 }) {
+export function useSearchProductsQuery(params = { limit: 10 }) {
   const { limit, ...query } = params;
 
-  return useQuery(["search", params], () => searchProducts(params), {
+  return useQuery(['search-products', params], () => searchProducts(params), {
     enabled: Object.values(query).some((val) => !!val),
   });
 }
