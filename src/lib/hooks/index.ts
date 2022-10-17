@@ -9,3 +9,4 @@ export * from './logout';
 export * from './payment';
 export * from './pickup';
 export * from './product';
+export * from './category';
